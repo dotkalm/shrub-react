@@ -14,7 +14,7 @@ class Post extends Component {
         this.setState({[e.target.name]: e.target.value});
       } else {
         // file upload
-        console.log(e.target.files[0])
+        
         this.setState({image: e.target.files[0]});
       }
     }
@@ -27,28 +27,21 @@ class Post extends Component {
       data.append('description', this.state.description);
       data.append('author', this.state.id);
   
-      // console.log(data.entries(), ' this is data')
-      // for (let pair of data.entries()){
-         
-      //   console.log(pair[0]  ,' , ', pair[1])
-      // }
-      // console.log(data)
+  
       const registerCall = this.props.addShrub(data);
   
       registerCall.then((data) => {
-        console.log(data)
-         //  if(data.status.message === "Success"){
+        
+          if(data.status.message === "success"){
             
-         //  } else {
-         //    console.log(data, ' this should have an error message? How could you display that on the screen')
-         //  }
+          } else {
+            console.log(data, ' this should have an error message? How could you display that on the screen')
+          }
       })
     }
   
    render(){
-     console.log(this.state.id, 'this state id')
-     console.log(this.props.id, 'user id')
-     console.log(this.props, 'this . props')
+ 
       return(
          <div>
             <form onSubmit={this.handleSubmit}>

@@ -33,8 +33,6 @@ class App extends Component {
         this.state.userId = parsedResponse.data.id})
       this.setState(() => {
         this.state.username = parsedResponse.data.username
-        // this.state.userId = parsedResponse.data.id
-        console.log(this.state.userId)
         return {
           
           ...parsedResponse.data,
