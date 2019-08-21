@@ -8,8 +8,13 @@ class App extends Component {
   state = {
     username: '',
     email:'',
-    password: ''
+    password: '',
+    userId:''
   }
+  // async componentDidMount(){
+  //     const allShrubs = await this.logIn();
+  // }
+
   logIn = async (loginInfo) => {
     try {
 
@@ -23,20 +28,26 @@ class App extends Component {
       })
 
       const parsedResponse = await loginResponse.json();
-
-
+      
+      this.setState(() =>{
+        this.state.userId = parsedResponse.data.id})
       this.setState(() => {
+        this.state.username = parsedResponse.data.username
+        // this.state.userId = parsedResponse.data.id
+        console.log(this.state.userId)
         return {
+          
           ...parsedResponse.data,
           loading: false
         }
+        
       })
-
       return parsedResponse
 
     } catch (err) {
       console.log(err)
     }
+
   }
   render(){
     return (
@@ -47,7 +58,10 @@ class App extends Component {
             return <Login {...props} logIn={this.logIn}/>
           }}/>
           <Route exact path='/profile' render={(props)=>{
-            return <Profile {...props} logIn={this.logIn}/>
+            return <Profile {...props} userName={this.state.username} userId={this.state.userId}
+            />
+            
+            
           }} />
           
         </Switch>

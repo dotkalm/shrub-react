@@ -22,8 +22,8 @@ class Login extends Component {
                alias: data.data.username
            })
            
-         //   this.props.history.push('/profile')
-           console.log(this.props)
+           this.props.history.push('/profile')
+         //   console.log(this.props)
          } else {
            console.log(data, this.props)
          }
@@ -33,7 +33,7 @@ class Login extends Component {
    }
    render(){
       const name = this.state.alias
-      console.log(name)
+      // console.log(name)
       return (
          <div>
             {/* <Hello/> */}
