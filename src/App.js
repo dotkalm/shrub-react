@@ -4,6 +4,8 @@ import Login from './Login'
 import { Route, Switch } from 'react-router-dom'
 import Profile from './Profile'
 import Register from './Register'
+import FourZeroFour from './404'
+import CheckGreen from './checkGreen'
 class App extends Component {
   state = {
     username: '',
@@ -80,10 +82,10 @@ class App extends Component {
           <Route exact path='/register' render={(props)=> {return <Register {...props} registerUser={this.registerUser}/>}}/>
           <Route exact path='/profile' render={(props)=>{
             return <Profile {...props} userName={this.state.username} userId={this.state.userId}
-            />
-            
-            
-          }} />
+            />}} />
+          <Route exact path='/checkGreen' render={()=>{
+            return <CheckGreen/>}} />
+          <Route render={()=>{return<FourZeroFour/>}}/>
           
         </Switch>
       </main>
