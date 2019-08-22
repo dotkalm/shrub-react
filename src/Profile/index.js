@@ -23,6 +23,14 @@ class Profile extends Component {
       })
       
    }
+   async componentWillUnmount(){
+      
+      
+      this.setState({
+         shrubs: []
+      })
+      
+   }
    addShrub = async (data) => {
       try {
          

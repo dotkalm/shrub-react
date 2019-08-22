@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 
 export const LogStyle = styled.div`
+  display: grid | inline-grid;
   grid-column-start: 2;
   grid-column-end: five;
   grid-row-start: row1-start

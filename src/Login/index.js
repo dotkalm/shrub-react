@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 // import Hello from './hello';
 import PlayingVid from '../Vid'
+
 import {
    LogStyle,
    
@@ -16,6 +17,10 @@ class Login extends Component {
    }
    handleChange = (e) => {
       this.setState({[e.target.name]: e.target.value})
+   }
+   handleRedirect = async (e) => {
+      e.preventDefault();
+      this.props.history.push('/register')
    }
    handleSubmit = async (e) => {
       e.preventDefault();
@@ -55,8 +60,10 @@ class Login extends Component {
             </LogStyle>
             <h1>{ this.state.attempts>0 ?  `Wrong Username or Password -- ${this.state.attempts} failed attempts`  
             : <br/>}</h1>
+            <form onSubmit={this.handleRedirect}>
+               <button type='submit' >REGISTER</button>
+            </form>
             
-            <button type='submit'>REGISTER</button>
             <PlayingVid/>
             
 
