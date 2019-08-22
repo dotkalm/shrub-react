@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import Post from '../Post'
 import Shrubs from '../Shrublist'
+import { Redirect } from 'react-router-dom'
+import {
+   Hello,
+   
+} from './style'
 
 class Profile extends Component {
    state = {
@@ -9,6 +14,7 @@ class Profile extends Component {
       logged: false,
       userId: this.props.userId
    }
+   
    async componentDidMount(){
       const allShrubs = await this.getShrubs();
       
@@ -31,15 +37,17 @@ class Profile extends Component {
  
        const parsedResponse = await registerResponse.json(); 
        this.setState({
-         ...parsedResponse.data,
-         loading: false
+         shrubs: [...this.state.shrubs, parsedResponse.data]
        })
+       
        return parsedResponse;
  
      } catch (err) {
-       console.log(err)
+       
+       return err
      }
    }
+   
    getShrubs = async () => {
       try {
          const responseGetShrubs = await fetch('http://localhost:8000/api/v1/', {
@@ -58,12 +66,17 @@ class Profile extends Component {
 
    }
    render(){
-     
+      
+      
       return(
          <div>
-            HI {this.state.username}, post a pic
+            { this.state.username.length === 0 ? <Redirect to="/" /> : '' }
+            <Hello color={"yellow"}>HI {this.state.username}, post a pic</Hello>
             <Post addShrub={this.addShrub} author={this.state.username} id={this.state.userId}/>
-            <Shrubs shrubs={this.state.shrubs}/>
+            
+               <Shrubs shrubs={this.state.shrubs}/>
+            
+            
          </div>
       )
    }

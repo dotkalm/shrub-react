@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
 // import Hello from './hello';
-
+import PlayingVid from '../Vid'
+import {
+   LogStyle,
+   
+} from './style'
 class Login extends Component {
    state = {
       username: '',
       email:'',
       password: '',
       isLogged: false,
-      alias: ''
+      alias: '',
+      attempts: 0
    }
    handleChange = (e) => {
       this.setState({[e.target.name]: e.target.value})
@@ -21,30 +26,39 @@ class Login extends Component {
                isLogged: true,
                alias: data.data.username
            })
-           
            this.props.history.push('/profile')
-         //   console.log(this.props)
-         } else {
-           console.log(data, this.props)
+         } else if(data.status.code !== '201'){
+            this.setState({
+               attempts: this.state.attempts + 1,
+               alias: data.data.username
+           })
+         }else {
+           
          }
        }).catch((err) => {
          console.log(err)
        })
    }
+   
    render(){
-      const name = this.state.alias
-      // console.log(name)
+      
       return (
          <div>
             {/* <Hello/> */}
+            <LogStyle>
             <form onSubmit={this.handleSubmit}>
               username: 
               <input placeholder='Username' type='text' name='username' onChange={this.handleChange}/>
               password: <input type='password' name='password'onChange={this.handleChange}/>
               <button type='submit'>LOG IN</button>
             </form>
-            <h1>{ this.state.isLogged ?  `Hi ${name} you are logged in.`  
-            : <br></br>}</h1>
+            </LogStyle>
+            <h1>{ this.state.attempts>0 ?  `Wrong Username or Password -- ${this.state.attempts} failed attempts`  
+            : <br/>}</h1>
+            
+            <button type='submit'>REGISTER</button>
+            <PlayingVid/>
+            
 
             
          </div>

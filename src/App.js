@@ -50,7 +50,6 @@ class App extends Component {
   render(){
     return (
       <main>
-        OK 
         <Switch>
           <Route exact path="/" render={(props)=>{
             return <Login {...props} logIn={this.logIn}/>
