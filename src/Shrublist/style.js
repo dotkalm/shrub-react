@@ -6,13 +6,20 @@ export const ShrubRow = styled.div`
    flex-wrap: nowrap;
    overflow-x: auto;
    @media (max-width: 650px){
-      background-color: yellow
+      
    }
    .card {
       display: inline-block;
     }
-
+   .pixelColor {
+      background-color: background-color: ${props => props.color ? props.color : "rgb(255,0,0)"};
+   }
    
  }
 
+`
+
+export const CustomColor = styled.div`
+   background-color: ${props => props.color ? props.color : "green"};
+   padding: 2rem;
 `
