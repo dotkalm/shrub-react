@@ -78,7 +78,7 @@ class Profile extends Component {
       
       return(
          <div>
-            { this.state.username.length === 0 ? <Redirect to="/" /> : '' }
+            {/* { this.state.username.length === 0 ? <Redirect to="/" /> : '' } */}
             <Hello color={"yellow"}>HI {this.state.username}, post a pic</Hello>
             <Post addShrub={this.addShrub} author={this.state.username} id={this.state.userId}/>
             

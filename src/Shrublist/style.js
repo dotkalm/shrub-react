@@ -22,4 +22,25 @@ export const ShrubRow = styled.div`
 export const CustomColor = styled.div`
    background-color: ${props => props.color ? props.color : "green"};
    padding: 2rem;
+   margin: auto
+   @media (max-width: 1350px){
+      width: 26rem;
+      margin: auto
+   };
+   img{
+      width: 28rem;
+      margin: -1rem
+   }
+   p{
+      display: flex
+   }
+`
+
+export const SpanPadding = styled.div`
+
+   background-color: ${props => props.color ? props.color : "green"};
+   padding: 2rem;
+   @media (max-width: 1350px){
+      width: 30rem;
+   }
 `
