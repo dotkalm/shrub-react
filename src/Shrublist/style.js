@@ -5,6 +5,7 @@ export const ShrubRow = styled.div`
    display: flex;
    flex-wrap: nowrap;
    overflow-x: auto;
+   margin: auto;
    @media (max-width: 650px){
       
    }

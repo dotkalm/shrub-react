@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Post from '../Post'
 import Shrubs from '../Shrublist'
-import { Redirect } from 'react-router-dom'
 import {
    Hello,
    
@@ -31,6 +30,7 @@ class Profile extends Component {
       })
       
    }
+   
    addShrub = async (data) => {
       try {
          
@@ -80,7 +80,7 @@ class Profile extends Component {
          <div>
             {/* { this.state.username.length === 0 ? <Redirect to="/" /> : '' } */}
             <Hello color={"yellow"}>HI {this.state.username}, post a pic</Hello>
-            <Post addShrub={this.addShrub} author={this.state.username} id={this.state.userId}/>
+            <Post handleDelete={this.handleDelete} addShrub={this.addShrub} author={this.state.username} id={this.state.userId}/>
             
                <Shrubs shrubs={this.state.shrubs}/>
             
