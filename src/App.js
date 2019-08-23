@@ -39,7 +39,13 @@ class App extends Component {
       console.log(err)
     }
   }
+  // checkGreen = async (colorInfo) => {
+  //   try {
 
+  //   } catch(err){
+  //     console.log(err)
+  //   }
+  // }
   logIn = async (loginInfo) => {
     try {
 
@@ -80,11 +86,8 @@ class App extends Component {
             return <Login {...props} logIn={this.logIn}/>
           }}/>
           <Route exact path='/register' render={(props)=> {return <Register {...props} registerUser={this.registerUser}/>}}/>
-          <Route exact path='/profile' render={(props)=>{
-            return <Profile {...props} userName={this.state.username} userId={this.state.userId}
-            />}} />
-          <Route exact path='/checkGreen' render={()=>{
-            return <CheckGreen/>}} />
+          <Route exact path='/profile' render={(props)=>{ return <Profile {...props} userName={this.state.username} userId={this.state.userId}/>}} />
+          <Route exact path='/checkGreen' render={(props)=>{return <CheckGreen {...props} userName={this.state.username} userId={this.state.userId} checkGreen={this.checkGreen}/>}} />
           <Route render={()=>{return<FourZeroFour/>}}/>
           
         </Switch>
