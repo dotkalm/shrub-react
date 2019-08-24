@@ -7,8 +7,8 @@ class Delete extends Component {
    
    handleSubmit = async (e) => {
       e.preventDefault();
-      
-      this.props.delete(this.props.shrub.id)
+      console.log(this.props.shrub)
+      this.props.delete(this.props.shrub.id,this.props.shrub.author.id)
       
    }
    

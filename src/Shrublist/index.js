@@ -8,7 +8,6 @@ import Delete from '../DeletePhoto'
 
 const Shrubs = (props) => {
    
-   console.log(props, '<-- props in shrublist')
    const shrubList = props.shrubs.map((shrub,i) => {
       
       return (

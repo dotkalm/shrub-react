@@ -31,7 +31,7 @@ class Profile extends Component {
       
    }
    handleDelete = async (id) => {
-      
+      console.log(id)
       try{
          const deleteShrub = await fetch('http://localhost:8000/api/v1/' + id, {
             method: 'DELETE',
@@ -40,11 +40,12 @@ class Profile extends Component {
          if(deleteShrub.status !== 200){
             throw Error('idk wat happened')
          }
-         const deleteShrubJson = await deleteShrub.json();
-         console.log(deleteShrubJson)
+         // const deleteShrubJson = await deleteShrub.json();
+         // console.log(deleteShrubJson)
          this.setState({
             shrubs: this.state.shrubs.filter((shrub) => shrub.id !== id)
          })
+         
 
       } catch(err){
          console.log(err)
