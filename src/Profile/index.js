@@ -30,7 +30,28 @@ class Profile extends Component {
       })
       
    }
-   
+   handleDelete = async (id) => {
+      
+      try{
+         const deleteShrub = await fetch('http://localhost:8000/api/v1/' + id, {
+            method: 'DELETE',
+            credentials: 'include'
+         })
+         if(deleteShrub.status !== 200){
+            throw Error('idk wat happened')
+         }
+         const deleteShrubJson = await deleteShrub.json();
+         console.log(deleteShrubJson)
+         this.setState({
+            shrubs: this.state.shrubs.filter((shrub) => shrub.id !== id)
+         })
+
+      } catch(err){
+         console.log(err)
+         return err
+      }
+      
+   }
    addShrub = async (data) => {
       try {
          
@@ -80,9 +101,9 @@ class Profile extends Component {
          <div>
             {/* { this.state.username.length === 0 ? <Redirect to="/" /> : '' } */}
             <Hello color={"yellow"}>HI {this.state.username}, post a pic</Hello>
-            <Post handleDelete={this.handleDelete} addShrub={this.addShrub} author={this.state.username} id={this.state.userId}/>
+            <Post addShrub={this.addShrub} author={this.state.username} id={this.state.userId}/>
             
-               <Shrubs shrubs={this.state.shrubs}/>
+               <Shrubs shrubs={this.state.shrubs} handleDelete={this.handleDelete}/>
             
             
          </div>
