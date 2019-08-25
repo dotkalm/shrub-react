@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 
-class Delete extends Component {
+class EditShrub extends Component {
    state = {
       shrub: ''
    }
    
    handleSubmit = async (e) => {
       e.preventDefault();
-      console.log(this.props.shrub)
-      this.props.delete(this.props.shrub.id,this.props.shrub.author.id)
+      console.log(this.props)
+      this.props.edit(this.props.shrub.id)
       
    }
    
@@ -18,11 +18,11 @@ class Delete extends Component {
          
          <form onSubmit={this.handleSubmit}>
             <button>
-               DELETE
+               Edit
             </button>
          </form>
       )
    }
 }
 
-export default Delete 
+export default EditShrub 

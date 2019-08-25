@@ -5,6 +5,7 @@ import {
    SpanPadding
 } from './style'
 import Delete from '../DeletePhoto'
+import EditShrub from '../Edit/index.js'
 
 const Shrubs = (props) => {
    
@@ -19,7 +20,7 @@ const Shrubs = (props) => {
                {/* uploaded by the {shrub.author.username} */}
                <p>{shrub.detect_shrub ? 'nice shrub' : 'not sure if this is a shrub'}</p>
                <Delete shrub={shrub} delete={props.handleDelete}/>
-               
+		<EditShrub shrub={shrub} edit={props.showModal}/>                
             </CustomColor>
          </SpanPadding>
       )

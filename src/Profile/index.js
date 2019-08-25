@@ -11,7 +11,12 @@ class Profile extends Component {
       shrubs: [],
       username: this.props.userName,
       logged: false,
-      userId: this.props.userId
+      userId: this.props.userId,
+      showEditModal: false,
+      shrubToEdit: {
+      	id: null,
+	description: ''
+      }
    }
    
    async componentDidMount(){
@@ -20,16 +25,21 @@ class Profile extends Component {
       this.setState({
          shrubs: [...allShrubs]
       })
-      
    }
    async componentWillUnmount(){
-      
-      
       this.setState({
          shrubs: []
       })
-      
    }
+   showModal = (shrub) => {
+	   this.setState({
+	   	shrubToEdit: shrub,
+		showEditModal: !this.state.showEditModal
+	   })
+	   console.log(shrub, '<--- shrub')
+	   console.log(this.state)
+   }
+
    handleDelete = async (id) => {
       console.log(id)
       try{
@@ -104,7 +114,7 @@ class Profile extends Component {
             <Hello color={"yellow"}>HI {this.state.username}, post a pic</Hello>
             <Post addShrub={this.addShrub} author={this.state.username} id={this.state.userId}/>
             
-               <Shrubs shrubs={this.state.shrubs} handleDelete={this.handleDelete}/>
+               <Shrubs shrubs={this.state.shrubs} showModal={this.showModal} handleDelete={this.handleDelete}/>
             
             
          </div>
