@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Post from '../Post'
 import Shrubs from '../Shrublist'
+import EditModal from '../Edit/EditModal'
 import {
    Hello,
    
@@ -116,7 +117,7 @@ class Profile extends Component {
             
                <Shrubs shrubs={this.state.shrubs} showModal={this.showModal} handleDelete={this.handleDelete}/>
             
-            
+	      {this.state.showEditModal ? <EditModal/> : null} 
          </div>
       )
    }
