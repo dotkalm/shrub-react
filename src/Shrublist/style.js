@@ -1,16 +1,11 @@
 import styled from 'styled-components'
+
 export const ShrubRow = styled.div`
 
    background-color: ${props => props.color ? props.color : "green"};
-   display: flex;
-   flex-wrap: nowrap;
-   overflow-x: auto;
-   margin: auto;
    @media (max-width: 650px){
-      
    }
    .card {
-      display: inline-block;
     }
    .pixelColor {
       background-color: background-color: ${props => props.color ? props.color : "rgb(255,0,0)"};
@@ -22,15 +17,13 @@ export const ShrubRow = styled.div`
 
 export const CustomColor = styled.div`
    background-color: ${props => props.color ? props.color : "green"};
-   padding: 2rem;
-   margin: auto
+
    @media (max-width: 1350px){
-      width: 26rem;
-      margin: auto
+      margin: auto;
+      width: ${props => props.width ? props.width : 805};
    };
    img{
-      width: 28rem;
-      margin: -1rem
+   	width: 40%;
    }
    p{
       display: flex
@@ -40,8 +33,8 @@ export const CustomColor = styled.div`
 export const SpanPadding = styled.div`
 
    background-color: ${props => props.color ? props.color : "green"};
-   padding: 2rem;
+   width: 100%
    @media (max-width: 1350px){
-      width: 30rem;
+   	width: 100%
    }
 `
