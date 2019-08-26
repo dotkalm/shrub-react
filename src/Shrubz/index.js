@@ -49,7 +49,7 @@ class Player extends Component {
       return(
          <div>
             <Play color={"yellow"}>
-               <img className='pic' src={process.env.REACT_APP_BACKEND_URL + 'shrub_files/' + filezname} alt='shrubs'/>
+               <img className='pic' src={process.env.REACT_APP_BACKEND_URL + '/shrub_files/' + filezname} alt='shrubs'/>
             </Play>
          </div>
       )

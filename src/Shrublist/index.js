@@ -30,7 +30,7 @@ const Shrubs = (props) => {
 	    width={`${(shrub.width)}`}
 	    color={`rgb(${255-shrub.average_red},${255-shrub.average_green},${255-shrub.average_blue})`}>
 
-               <img src = {process.env.REACT_APP_BACKEND_URL + 'shrub_pics/' + shrub.image} alt={shrub.description}/>
+               <img src = {process.env.REACT_APP_BACKEND_URL + '/shrub_pics/' + shrub.image} alt={shrub.description}/>
                {/* uploaded by the {shrub.author.username} */}
                <p>{shrub.detect_shrub ? 'nice shrub' : 'not sure if this is a shrub'}</p>
 		<EditShrub shrub={shrub} edit={props.showModal}/>                
