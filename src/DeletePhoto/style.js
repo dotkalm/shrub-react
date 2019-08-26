@@ -1,12 +1,6 @@
 import styled from 'styled-components'
 
-export const EditForm = styled.div`
-	position: fixed;
-	background: red;
-	width: 60%;
-`
-
-export const EditButton = styled.div`
+export const DeleteButton = styled.div`
   background-color: #4CAF50; /* Green */
   border: none;
   color: white;
@@ -16,4 +10,3 @@ export const EditButton = styled.div`
   display: inline-block;
   font-size: 16px;
 `
-

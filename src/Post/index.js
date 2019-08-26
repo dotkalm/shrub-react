@@ -1,5 +1,5 @@
 import React, { Component }from 'react'
-
+import {PostForm} from './style'
 class Post extends Component {
    state = {
       author: this.props.author,
@@ -43,7 +43,7 @@ class Post extends Component {
    render(){
  
       return(
-         <div>
+         <PostForm>
             <form onSubmit={this.handleSubmit}>
               Shrub Details: <br/>
               Location:
@@ -56,7 +56,7 @@ class Post extends Component {
                <br/>
               <button type='submit'>Post</button>
             </form>
-         </div>
+         </PostForm>
       )
    }
 

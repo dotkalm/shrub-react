@@ -8,20 +8,27 @@ import Delete from '../DeletePhoto'
 import EditShrub from '../Edit/index.js'
 
 const Shrubs = (props) => {
-   
-   const shrubList = props.shrubs.map((shrxub,i) => {
-    	   console.log(props,'<---PROPS in shrublist index')	
-	   const shrub = props.shrubs[i]
-	   console.log(shrub)
+	let total = {
+		width: 0,
+		height: 0
+	};
+	for (let i=0; i<props.shrubs.length; i++){
+		total['width'] += (props.shrubs[i]['width'])
+	}
+	props.shrubs.sort((a, b) => (b.id > a.id) ? 1 : -1)   
+	const shrubList = props.shrubs.map((shrub,i) => {
       return (
          
          <SpanPadding
 	 key={`${shrub.image.replace('.jpg','')}`} 
-	 width={`${(shrub.width)}x`}
-	 color={`rgb(${shrub.average_red},${shrub.average_green},${shrub.average_blue})`}>
+	 height={`${(shrub.height)}`}
+	 width={`${shrub.width}`}
+	 color={`rgb(${shrub.average_red},
+	 ${shrub.average_green},
+	 ${shrub.average_blue})`}>
             <CustomColor
 	    key={`${shrub.image.replace('.jpg','')}`}
-	    width={`${(shrub.width)}px`}
+	    width={`${(shrub.width)}`}
 	    color={`rgb(${255-shrub.average_red},${255-shrub.average_green},${255-shrub.average_blue})`}>
 
                <img src = {'http://localhost:8000/shrub_pics/' + shrub.image} alt={shrub.description}/>
@@ -34,7 +41,7 @@ const Shrubs = (props) => {
       )
    })
    return(
-      <ShrubRow>
+      <ShrubRow total_width={total['width']}>
          {shrubList}
       </ShrubRow>
    )

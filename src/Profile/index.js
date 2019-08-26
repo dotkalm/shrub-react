@@ -13,6 +13,7 @@ class Profile extends Component {
       username: this.props.userName,
       logged: false,
       userId: this.props.userId,
+      showPostModal: false,	   
       showEditModal: false,
       shrubToEdit: {
       	id: null,
@@ -32,17 +33,20 @@ class Profile extends Component {
          shrubs: []
       })
    }
+   handlePostSubmit = async (e) => {
+	e.preventDefault()   
+   	this.setState({
+		showPostModal: !this.state.showPostModal
+	})
+   }
    showModal = (shrub) => {
 	   this.setState({
 	   	shrubToEdit: shrub,
 		showEditModal: !this.state.showEditModal
 	   })
-	   console.log(shrub, '<--- shrub')
-	   console.log(this.state)
    }
 
    handleDelete = async (id) => {
-      console.log(id)
       try{
          const deleteShrub = await fetch('http://localhost:8000/api/v1/' + id, {
             method: 'DELETE',
@@ -69,7 +73,7 @@ class Profile extends Component {
          
        const registerResponse = await fetch('http://localhost:8000/api/v1/', {
          method: 'POST',
-         credentials: 'include',// on every request we have to send the cookie
+         credentials: 'include',
          body: data,
          headers: {
             'enctype': 'multipart/form-data'
@@ -78,7 +82,8 @@ class Profile extends Component {
  
        const parsedResponse = await registerResponse.json(); 
        this.setState({
-         shrubs: [...this.state.shrubs, parsedResponse.data]
+         shrubs: [...this.state.shrubs, parsedResponse.data],
+	 showPostModal: !this.state.showPostModal
        })
        
        return parsedResponse;
@@ -112,12 +117,15 @@ class Profile extends Component {
       return(
          <div>
             {/* { this.state.username.length === 0 ? <Redirect to="/" /> : '' } */}
-            <Hello color={"yellow"}>HI {this.state.username}, post a pic</Hello>
-            <Post addShrub={this.addShrub} author={this.state.username} id={this.state.userId}/>
-            
+	      {this.state.showEditModal ? <EditModal/> : null} 
+            <Hello color={"yellow"}>
+	      HI {this.state.username},<form onSubmit={this.handlePostSubmit}>
+	      	<button> post</button> 
+	      </form>
+	      a pic</Hello>	      
+	      {this.state.showPostModal ? <Post addShrub={this.addShrub} author={this.state.username} id={this.state.userId}/> : null}            
                <Shrubs shrubs={this.state.shrubs} showModal={this.showModal} handleDelete={this.handleDelete}/>
             
-	      {this.state.showEditModal ? <EditModal/> : null} 
          </div>
       )
    }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {DeleteButton} from './style'
 
 class Delete extends Component {
    state = {
@@ -15,12 +16,13 @@ class Delete extends Component {
    render(){
 
       return(
-         
+	<DeleteButton>         
          <form onSubmit={this.handleSubmit}>
             <button>
                DELETE
             </button>
          </form>
+	</DeleteButton>
       )
    }
 }

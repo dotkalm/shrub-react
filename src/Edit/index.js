@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import {EditButton} from './style'
 class EditShrub extends Component {
    state = {
       shrub: ''
@@ -7,7 +7,6 @@ class EditShrub extends Component {
    
    handleSubmit = async (e) => {
       e.preventDefault();
-      console.log(this.props)
       this.props.edit(this.props.shrub.id)
       
    }
@@ -15,12 +14,13 @@ class EditShrub extends Component {
    render(){
 
       return(
-         
+        <EditButton> 
          <form onSubmit={this.handleSubmit}>
             <button>
                Edit
             </button>
          </form>
+	</EditButton>      
       )
    }
 }

@@ -1,11 +1,15 @@
 import React from 'react'
-
+import {EditForm} from './style'
 const EditModal = (props) => {
-	console.log(props)
 	return(
-		<div>
+		<EditForm>
 			Edit Shrub
-		</div>
+		<form>		
+			<input type='text'/>
+			Edit Description:
+			<input type='text'/>
+		</form>
+		</EditForm>
 	)
 }
 export default EditModal
