@@ -56,7 +56,7 @@ class Profile extends Component {
    }
    handleDelete = async (id) => {
       try{
-         const deleteShrub = await fetch('http://localhost:8000/api/v1/' + id, {
+         const deleteShrub = await fetch(process.env.REACT_APP_BACKEND_URL + 'api/v1/' + id, {
             method: 'DELETE',
             credentials: 'include'
          })
@@ -80,7 +80,7 @@ class Profile extends Component {
    addShrub = async (data) => {
       try {
          
-       const registerResponse = await fetch('http://localhost:8000/api/v1/', {
+       const registerResponse = await fetch(process.env.REACT_APP_BACKEND_URL + 'api/v1/', {
          method: 'POST',
          credentials: 'include',
          body: data,
@@ -105,7 +105,7 @@ class Profile extends Component {
    
    getShrubs = async () => {
       try {
-         const responseGetShrubs = await fetch('http://localhost:8000/api/v1/', {
+         const responseGetShrubs = await fetch(process.env.REACT_APP_BACKEND_URL + 'api/v1/', {
             credentials: 'include',
             method: 'GET'
          })

@@ -15,7 +15,7 @@ class App extends Component {
   }
   registerUser = async (registrationInfo) => {
     try {
-      const registerResponse = await fetch('http://localhost:8000/user/register/', {
+      const registerResponse = await fetch(process.env.REACT_APP_BACKEND_URL + 'user/register/', {
         method: 'POST',
         credentials: 'include',
         body: JSON.stringify(registrationInfo),
@@ -49,7 +49,7 @@ class App extends Component {
   logIn = async (loginInfo) => {
     try {
 
-      const loginResponse = await fetch('http://localhost:8000/user/login/', {
+      const loginResponse = await fetch(process.env.REACT_APP_BACKEND_URL + 'user/login/', {
         method: 'POST',
         credentials: 'include',// on every request we have to send the cookie
         body: JSON.stringify(loginInfo),
