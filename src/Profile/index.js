@@ -3,6 +3,7 @@ import Post from '../Post'
 import Shrubs from '../Shrublist'
 import EditModal from '../Edit/EditModal'
 import {
+
    Hello,
    
 } from './style'
@@ -16,8 +17,6 @@ class Profile extends Component {
       showPostModal: false,	   
       showEditModal: false,
       shrubToEdit: {
-      	id: null,
-	description: ''
       }
    }
    
@@ -44,8 +43,17 @@ class Profile extends Component {
 	   	shrubToEdit: shrub,
 		showEditModal: !this.state.showEditModal
 	   })
+	   console.log(shrub)
+	   console.log(this.state.shrubToEdit, '<---- shrub to edit')
    }
-
+   handleFormChange = (e) => {
+      this.setState({
+         employeeToEdit: {
+            ...this.state.employeeToEdit,
+            [e.target.name] : e.target.value
+         }
+      })
+   }
    handleDelete = async (id) => {
       try{
          const deleteShrub = await fetch('http://localhost:8000/api/v1/' + id, {
@@ -58,7 +66,8 @@ class Profile extends Component {
          // const deleteShrubJson = await deleteShrub.json();
          // console.log(deleteShrubJson)
          this.setState({
-            shrubs: this.state.shrubs.filter((shrub) => shrub.id !== id)
+            shrubs: this.state.shrubs.filter((shrub) => shrub.id !== id),
+	    showEditModal: !this.state.showEditModal
          })
          
 
@@ -117,7 +126,7 @@ class Profile extends Component {
       return(
          <div>
             {/* { this.state.username.length === 0 ? <Redirect to="/" /> : '' } */}
-	      {this.state.showEditModal ? <EditModal/> : null} 
+	      {this.state.showEditModal ? <EditModal shrub={this.state.shrubToEdit} delete={this.handleDelete} handleFormChange={this.handleFormChange} /> : null} 
             <Hello color={"yellow"}>
 	      HI {this.state.username},<form onSubmit={this.handlePostSubmit}>
 	      	<button> post</button> 

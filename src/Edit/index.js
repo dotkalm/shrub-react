@@ -7,7 +7,7 @@ class EditShrub extends Component {
    
    handleSubmit = async (e) => {
       e.preventDefault();
-      this.props.edit(this.props.shrub.id)
+      this.props.edit(this.props.shrub)
       
    }
    
