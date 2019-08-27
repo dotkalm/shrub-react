@@ -14,7 +14,8 @@ class EditShrub extends Component {
    render(){
 
       return(
-        <EditButton> 
+        <EditButton  
+	    color={`rgb(${this.props.shrub.average_red},${this.props.shrub.average_green},${this.props.shrub.average_blue})`}>
          <form onSubmit={this.handleSubmit}>
             <button>
                Edit

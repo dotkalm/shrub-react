@@ -23,7 +23,7 @@ export const CustomColor = styled.div`
    display: block
    @media (max-width: 550px){
       marign:auto;
-      padding:1rem 1rem 0rem 1rem;
+      padding:1rem 1rem .8rem 1rem;
       img{
 	width: 100%
 	}

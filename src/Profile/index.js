@@ -47,12 +47,34 @@ class Profile extends Component {
 	   console.log(this.state.shrubToEdit, '<---- shrub to edit')
    }
    handleFormChange = (e) => {
+	   	console.log(e.target, 'eeeeeeeeeeeeeee')
       this.setState({
-         employeeToEdit: {
-            ...this.state.employeeToEdit,
+         shrubToEdit: {
+            ...this.state.shrubToEdit,
             [e.target.name] : e.target.value
          }
       })
+   }
+   closeAndEdit = async (id) => {
+	console.log(id, '<-- id in close and edit')
+   	try{
+         const editRequest = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/' + id, {
+		 method: 'PUT',
+		 credentials: 'include',
+		 body: JSON.stringify(this.state.shrubToEdit),
+		 headers: {
+			 'Content-Type': 'application/json'
+		 }
+	 })
+		if(editRequest.status !== 200){
+			throw Error('not working')
+		}
+		const editResponse = await editRequest.json();
+		console.log(editResponse)	
+	} catch(err){
+	console.log(err)
+	return err
+	}
    }
    handleDelete = async (id) => {
       try{
@@ -126,7 +148,8 @@ class Profile extends Component {
       return(
          <div>
             {/* { this.state.username.length === 0 ? <Redirect to="/" /> : '' } */}
-	      {this.state.showEditModal ? <EditModal shrub={this.state.shrubToEdit} delete={this.handleDelete} handleFormChange={this.handleFormChange} /> : null} 
+	      {this.state.showEditModal ? <EditModal closeAndEdit={this.closeAndEdit} close={this.showModal} shrub={this.state.shrubToEdit} delete={this.handleDelete} handleFormChange={this.handleFormChange} /> : null} 
+	      
             <Hello color={"yellow"}>
 	      HI {this.state.username},<form onSubmit={this.handlePostSubmit}>
 	      	<button> post</button> 
