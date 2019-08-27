@@ -24,9 +24,9 @@ const PlayingVid = () =>{
    return(
       <Home >
         
-      <img src={`http://localhost:8000/shrub_files/${filezname}_Layer ${297-count}.jpg`} onClick={() => setCount(count + 1)} alt='shrubs'/>
-      <img src={`http://localhost:8000/shrub_files/${filezname}_Layer ${297-count}.jpg`} onClick={() => setCount(count + 1)} alt='shrubs'/>
-      <img src={`http://localhost:8000/shrub_files/${filezname}_Layer ${297-count}.jpg`} onClick={() => setCount(count + 1)} alt='shrubs'/>
+      <img src={`${process.env.REACT_APP_BACKEND_URL}/shrub_files/${filezname}_Layer ${297-count}.jpg`} onClick={() => setCount(count + 1)} alt='shrubs'/>
+      <img src={`${process.env.REACT_APP_BACKEND_URL}/shrub_files/${filezname}_Layer ${297-count}.jpg`} onClick={() => setCount(count + 1)} alt='shrubs'/>
+      <img src={`${process.env.REACT_APP_BACKEND_URL}/shrub_files/${filezname}_Layer ${297-count}.jpg`} onClick={() => setCount(count + 1)} alt='shrubs'/>
       
       </Home>
    )
