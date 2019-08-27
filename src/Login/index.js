@@ -54,7 +54,7 @@ class Login extends Component {
             <form onSubmit={this.handleSubmit}>
               username: 
               <input placeholder='Username' type='text' name='username' onChange={this.handleChange}/>
-              password: <input type='password' name='password'onChange={this.handleChange}/>
+              password: <input type='password' placeholder='Password' name='password'onChange={this.handleChange}/>
               <button type='submit'>LOG IN</button>
             </form>
             </LogStyle>

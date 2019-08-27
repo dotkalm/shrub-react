@@ -43,20 +43,17 @@ class Profile extends Component {
 	   	shrubToEdit: shrub,
 		showEditModal: !this.state.showEditModal
 	   })
-	   console.log(shrub)
-	   console.log(this.state.shrubToEdit, '<---- shrub to edit')
    }
    handleFormChange = (e) => {
-	   	console.log(e.target, 'eeeeeeeeeeeeeee')
       this.setState({
          shrubToEdit: {
             ...this.state.shrubToEdit,
-            [e.target.name] : e.target.value
+            [e.target.name] : e.target.value,
+
          }
       })
    }
    closeAndEdit = async (id) => {
-	console.log(id, '<-- id in close and edit')
    	try{
          const editRequest = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/v1/' + id, {
 		 method: 'PUT',
@@ -70,7 +67,16 @@ class Profile extends Component {
 			throw Error('not working')
 		}
 		const editResponse = await editRequest.json();
-		console.log(editResponse)	
+		const editedShrubArray = this.state.shrubs.map((shrub) =>{
+			if(shrub.id === editResponse.data.id){
+				shrub = editResponse.data
+			}
+			return shrub
+		})
+	   	this.setState({
+		showEditModal: !this.state.showEditModal
+	   })
+
 	} catch(err){
 	console.log(err)
 	return err
@@ -156,7 +162,7 @@ class Profile extends Component {
 	      </form>
 	      a pic</Hello>	      
 	      {this.state.showPostModal ? <Post addShrub={this.addShrub} author={this.state.username} id={this.state.userId}/> : null}            
-               <Shrubs shrubs={this.state.shrubs} showModal={this.showModal} handleDelete={this.handleDelete}/>
+               <Shrubs user={this.state.userId} shrubs={this.state.shrubs} showModal={this.showModal} handleDelete={this.handleDelete}/>
             
          </div>
       )

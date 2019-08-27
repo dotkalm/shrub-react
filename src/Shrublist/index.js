@@ -33,7 +33,7 @@ const Shrubs = (props) => {
                <img src = {process.env.REACT_APP_BACKEND_URL + '/shrub_pics/' + shrub.image} alt={shrub.description}/>
                {/* uploaded by the {shrub.author.username} */}
                <p>{shrub.detect_shrub ? 'nice shrub' : 'not sure if this is a shrub'}</p>
-		<EditShrub shrub={shrub} edit={props.showModal}/>                
+		{(props.user === shrub.author.id) ? <EditShrub shrub={shrub} edit={props.showModal}/>   : null} 
             </CustomColor>
          </SpanPadding>
       )
